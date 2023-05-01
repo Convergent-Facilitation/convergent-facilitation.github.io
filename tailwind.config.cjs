@@ -5,7 +5,14 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
+        fontFamily: {
+          body: ["Space Grotesk", "sans-serif"],
+          heading: ["Space Grotesk", "sans-serif"]
+
+        // sans: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
+        // sans: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
+        }
+
       },
     },
   },
