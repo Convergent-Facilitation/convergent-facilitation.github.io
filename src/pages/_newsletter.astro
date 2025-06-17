@@ -1,0 +1,36 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+
+const metadata = {
+  title: 'Contact',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+<div style={{
+    display: 'grid',
+    placeItems: 'center',
+    gridAutoFlow: 'row', // Ensure items flow in a column
+    minHeight: '100vh',
+    gap: '2rem', // Add gap between components
+  }}>
+
+  
+  <HeroText tagline="Newsletter" title="Stay in the loop" id="newsletter" subtitle="Get notified about upcoming events, exiting projects, new case studies as well as other resources. We do not send these very often. "/>
+<p>
+  Note, if you do not see a sign-up form below please <a href='/contact'>reach out to us via email</a>.
+</p>
+
+  <iframe
+      src="/constant-contact-form.html"
+      style={{width: "30%", height: "800px", border: "none"}}
+      title="Constant Contact Form"
+    />
+     </div>
+
+  </Layout>
