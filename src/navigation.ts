@@ -84,7 +84,7 @@ export const footerData = {
       links: [
         { text: 'Contact', href: '/contact' },
         { text: 'Newsletter', href: '/newsletter' },
-        { text: 'Github', href: 'https://github.com/orgs/Convergent-Facilitation/repositories' },
+        { text: 'Github', href: 'https://github.com/Convergent-Facilitation/convergent-facilitation.github.io' },
         { text: 'NGL Community', href: 'https://github.com/orgs/Convergent-Facilitation/repositories' },
 
         
@@ -101,7 +101,7 @@ export const footerData = {
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/convergentfacilitation/' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/convergentfacilitation' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
-    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/orgs/Convergent-Facilitation/repositories', target: '_blank' },
+    { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/Convergent-Facilitation/convergent-facilitation.github.io', target: '_blank' },
   ],
   footNote: `
     Convergent Facilitation — 2020 to present. Built with AstroWind. 
