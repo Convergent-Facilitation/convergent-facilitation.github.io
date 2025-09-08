@@ -1,0 +1,36 @@
+---
+publishDate: 2020-10-03T00:00:00Z
+title: Our offerings have been on hold
+excerpt: We invite you to sign up to the Nonviolent Global Liberation newsletter to be notified of their coming events.
+image: ~/assets/images/NGL_Full_Logo_final_Cropped_90pxH-optimized.webp
+category: Events
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Sign up to our Newsletter',
+        href: 'newsletter',
+        icon: 'tabler:mail',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+Newsletter
+</Fragment>
+
+    <Fragment slot="subtitle">
+    We invite you to sign up to the Nonviolent Global Liberation newsletter to be notified of their coming events.
+      <a> 
+        https://nglcommunity.org/support-us/#NGL-Newsletter
+      </a>
+    </Fragment>
+  </CallToAction>
+  
+  <small>
+  🖼️ by <a href="https://unsplash.com/de/@anniespratt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Annie Spratt</a>
+  </small>
+  
