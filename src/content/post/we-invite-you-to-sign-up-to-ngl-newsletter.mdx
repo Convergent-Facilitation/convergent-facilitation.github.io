@@ -1,19 +1,30 @@
 ---
 publishDate: 2025-09-05T00:00:00Z
-title: Convergent Facilitation offerings will be held within NGL
-excerpt: We invite you to sign up to the Nonviolent Global Liberation newsletter to be notified of coming events.
+title: Convergent Facilitation are current offered through NGL
+excerpt: We invite you to sign up to the Nonviolent Global Liberation newsletter to be notified about coming events.
 image: ~/assets/images/NGL_logo_900x506.png
 category: Events
 ---
-    <Fragment slot="title">
-Newsletter
-</Fragment>
 
+import CallToAction from '~/components/widgets/CallToAction.astro';
 
-Future Convergent Facilitation related events will be held amongst Nonviolent Global Liberation (NGL) events.
+Future Convergent Facilitation related events will be offered through the Nonviolent Global Liberation (NGL) community and shared on the NGL website and the NGL newsletter. We might send separate emails once in a while to the Convergent Facilitation newsletter. 
 
-We invite you to sign up to NGL newsletter to be notified of coming events.   
-      <a> 
-        https://nglcommunity.org/support-us/#NGL-Newsletter
-      </a>
+<CallToAction
+    subtitle="Find CF events through the Nonviolent Global Liberation (NGL) Community"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'NGL Events Overview',
+        href: 'https://nglcommunity.org/ngl-events/',
+        icon: 'tabler:heart-handshake',
+      },
+      {
+        variant: 'secondary',
+        text: 'Sign up to the NGL Newsletter',
+        href: 'https://nglcommunity.org/support-us/#NGL-Newsletter',
+        icon: 'tabler:news',
+      },
+    ]}
+  />
 
