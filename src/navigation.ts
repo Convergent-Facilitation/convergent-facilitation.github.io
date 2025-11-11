@@ -75,7 +75,7 @@ export const footerData = {
       title: 'Engage',
       links: [
         { text: 'Events', href: '/events' },
-        { text: 'Community of Practice', href: 'https://community.convergentfacilitation.org' },
+        { text: 'Community of Practice', href: 'https://community.convergentfacilitation.org', target: '_blank' },
         { text: 'Work with us', href: '/contact' },
       ],
     },
@@ -84,8 +84,8 @@ export const footerData = {
       links: [
         { text: 'Contact', href: '/contact' },
         { text: 'Newsletter', href: '/newsletter' },
-        { text: 'Github', href: 'https://github.com/Convergent-Facilitation/convergent-facilitation.github.io' },
-        { text: 'NGL Community', href: 'https://github.com/orgs/Convergent-Facilitation/repositories' },
+        { text: 'Github', href: 'https://github.com/Convergent-Facilitation/convergent-facilitation.github.io', target: '_blank' },
+        { text: 'NGL Community', href: 'https://nglcommunity.org/', target: '_blank' },
 
         
 
@@ -98,8 +98,8 @@ export const footerData = {
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/ConvergFacilit',  target: '_blank' },
-    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/convergentfacilitation/' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/convergentfacilitation' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/convergentfacilitation/', target: '_blank' },
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/convergentfacilitation', target: '_blank' },
     { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/Convergent-Facilitation/convergent-facilitation.github.io', target: '_blank' },
   ],
