@@ -15,7 +15,6 @@ import type { AstroIntegration } from 'astro';
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
-import rehypeExternalLinks from 'rehype-external-links'; // ⬅️ NEW
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -89,7 +88,6 @@ export default defineConfig({
     rehypePlugins: [
       responsiveTablesRehypePlugin,
       lazyImagesRehypePlugin,
-      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }], // ⬅️ NEW
     ],
   },
 
