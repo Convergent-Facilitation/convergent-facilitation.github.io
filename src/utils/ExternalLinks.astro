@@ -1,0 +1,29 @@
+---
+/* Sets target="_blank" + rel for all external links site-wide */
+---
+<script is:inline>
+  (() => {
+    const isExternal = (href) => {
+      try {
+        const u = href.startsWith('http') ? new URL(href) : new URL(href, location.origin);
+        return u.host !== location.host;
+      } catch { return false; }
+    };
+
+    const setExternalTargets = (root = document) => {
+      root.querySelectorAll('a[href]').forEach((a) => {
+        const href = a.getAttribute('href') || '';
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (isExternal(href)) {
+          a.target = '_blank';
+          if (!/\bnoopener\b/.test(a.rel)) a.rel += (a.rel ? ' ' : '') + 'noopener';
+          if (!/\bnoreferrer\b/.test(a.rel)) a.rel += (a.rel ? ' ' : '') + 'noreferrer';
+        }
+      });
+    };
+
+    setExternalTargets();
+    new MutationObserver(() => setExternalTargets())
+      .observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>
