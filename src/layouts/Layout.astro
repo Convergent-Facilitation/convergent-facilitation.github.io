@@ -17,6 +17,9 @@ import { ViewTransitions } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
 
+// NEW: site-wide external links helper
+import ExternalLinks from '~/utils/ExternalLinks.astro';
+
 export interface Props {
   metadata?: MetaDataType;
 }
@@ -42,6 +45,9 @@ const { language, textDirection } = I18N;
 
   <body class="antialiased text-default bg-page tracking-tight">
     <slot />
+
+    <!-- Ensures all external links open in a new tab -->
+    <ExternalLinks />
 
     <BasicScripts />
   </body>
