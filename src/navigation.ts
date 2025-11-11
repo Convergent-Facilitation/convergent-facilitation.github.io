@@ -37,6 +37,7 @@ export const headerData = {
         {
           text: 'CF App',
           href: getPermalink('/app'),
+          target: '_blank',
         },
 	  ]
     },
@@ -100,7 +101,7 @@ export const footerData = {
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/ConvergFacilit',  target: '_blank' },
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/convergentfacilitation/', target: '_blank' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/convergentfacilitation', target: '_blank' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
+    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml'), target: '_blank' },
     { ariaLabel: 'Github', icon: 'tabler:brand-github', href: 'https://github.com/Convergent-Facilitation/convergent-facilitation.github.io', target: '_blank' },
   ],
   footNote: `
