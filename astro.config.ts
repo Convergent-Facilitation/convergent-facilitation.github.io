@@ -15,6 +15,7 @@ import type { AstroIntegration } from 'astro';
 import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
+import rehypeExternalLinks from 'rehype-external-links'; // ⬅️ NEW
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -25,7 +26,7 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 export default defineConfig({
   output: 'static',
   redirects: {
-	'/app': {
+    '/app': {
       status: 302,
       destination: 'https://www.convergence.tools'
     }
@@ -36,7 +37,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap(),
-	mdx(),
+    mdx(),
     react(),
     icon({
       include: {
@@ -85,7 +86,11 @@ export default defineConfig({
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
-    rehypePlugins: [responsiveTablesRehypePlugin, lazyImagesRehypePlugin],
+    rehypePlugins: [
+      responsiveTablesRehypePlugin,
+      lazyImagesRehypePlugin,
+      [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }], // ⬅️ NEW
+    ],
   },
 
   vite: {
