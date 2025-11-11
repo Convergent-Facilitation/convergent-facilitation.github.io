@@ -66,7 +66,7 @@ export const footerData = {
       links: [
         { text: 'Case Studies', href: '/case-studies' },
         { text: 'Videos', href: '/t/videos' },
-        { text: 'Materials', href: '/t/materials' },
+        { text: 'Materials', href: '/materials' },
         { text: 'Book', href: '/book-highest-common-denominator' },
         { text: 'All our content', href: '/all' },
       ],
