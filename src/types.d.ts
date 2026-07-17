@@ -8,39 +8,49 @@ export interface Post {
   /** A post’s unique slug – part of the post’s URL based on its name, i.e. a post called “My Sample Page” has a slug “my-sample-page”. */
   slug: string;
 
-  /**  */
+  /** The full permalink for the post. */
   permalink: string;
 
-  /**  */
+  /** The original publication date. */
   publishDate: Date;
-  /**  */
+
+  /** The date the post was last updated. */
   updateDate?: Date;
 
-  /**  */
+  /** The post title. */
   title: string;
+
   /** Optional summary of post content. */
   excerpt?: string;
-  /**  */
+
+  /** Featured image. */
   image?: ImageMetadata | string;
 
-  /**  */
+  /** Optional caption displayed beneath the featured image. */
+  imageCaption?: string;
+
+  /** Post category. */
   category?: Taxonomy;
-  /**  */
+
+  /** Post tags. */
   tags?: Taxonomy[];
-  /**  */
+
+  /** Post author. */
   author?: string;
 
-  /**  */
+  /** SEO and social-sharing metadata. */
   metadata?: MetaData;
 
-  /**  */
+  /** Whether the post is currently a draft. */
   draft?: boolean;
 
-  /**  */
+  /** Rendered Astro content component. */
   Content?: AstroComponentFactory;
+
+  /** Raw post content. */
   content?: string;
 
-  /**  */
+  /** Estimated reading time in minutes. */
   readingTime?: number;
 }
 
@@ -181,6 +191,7 @@ export interface Disclaimer {
 }
 
 // COMPONENTS
+
 export interface CallToAction extends Omit<HTMLAttributes<'a'>, 'slot'> {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'link';
   text?: string;
@@ -213,6 +224,7 @@ export interface Form {
 }
 
 // WIDGETS
+
 export interface Hero extends Omit<Headline, 'classes'>, Omit<Widget, 'isDark' | 'classes'> {
   content?: string;
   actions?: string | CallToAction[];
@@ -268,7 +280,7 @@ export interface Steps extends Omit<Headline, 'classes'>, Widget {
     icon?: string;
     classes?: Record<string, string>;
   }>;
-  callToAction?: string | CallToAction;
+  callToAction?: string | CallToAction[];
   image?: string | Image;
   isReversed?: boolean;
 }
