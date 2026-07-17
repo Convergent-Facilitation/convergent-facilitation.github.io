@@ -29,6 +29,9 @@ export interface Post {
   /** Optional caption displayed beneath the featured image. */
   imageCaption?: string;
 
+  /** Optional external destination instead of the local post page. */
+  externalUrl?: string;
+
   /** Post category. */
   category?: Taxonomy;
 
