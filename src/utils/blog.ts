@@ -50,6 +50,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     title,
     excerpt,
     image,
+    imageCaption,
     tags: rawTags = [],
     category: rawCategory,
     author,
@@ -57,7 +58,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     metadata = {},
   } = data;
 
-  const slug = cleanSlug(rawSlug); // cleanSlug(rawSlug.split('/').pop());
+  const slug = cleanSlug(rawSlug);
   const publishDate = new Date(rawPublishDate);
   const updateDate = rawUpdateDate ? new Date(rawUpdateDate) : undefined;
 
@@ -76,7 +77,12 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   return {
     id: id,
     slug: slug,
-    permalink: await generatePermalink({ id, slug, publishDate, category: category?.slug }),
+    permalink: await generatePermalink({
+      id,
+      slug,
+      publishDate,
+      category: category?.slug,
+    }),
 
     publishDate: publishDate,
     updateDate: updateDate,
@@ -84,6 +90,7 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
     title: title,
     excerpt: excerpt,
     image: image,
+    imageCaption: imageCaption,
 
     category: category,
     tags: tags,
@@ -169,25 +176,23 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
 export const findLatestPosts_old = async ({ count }: { count?: number }): Promise<Array<Post>> => {
   const _count = count || 4;
   const posts = await fetchPosts();
-  console.log(posts)
+  console.log(posts);
 
   return posts ? posts.slice(0, _count) : [];
 };
 
 export const findLatestPosts = async ({
   count,
-  category, // Add this line to receive the category
+  category,
 }: {
   count?: number;
-  category?: string; // Add this line to the parameter types
+  category?: string;
 }): Promise<Array<Post>> => {
   const _count = count || 4;
   const posts = await fetchPosts();
 
-  // Filter posts by category if specified
   const filteredPosts = category
-    //? posts.filter(post => post.category === category) // Ensure your post has a category property
-	? posts.filter(post => post.category?.slug.toLowerCase() === category.toLowerCase())
+    ? posts.filter((post) => post.category?.slug.toLowerCase() === category.toLowerCase())
     : posts;
 
   return filteredPosts.slice(0, _count);
@@ -195,23 +200,18 @@ export const findLatestPosts = async ({
 
 export const findLatestPosts_old2 = async ({
   count,
-  category, // Add this line to receive the category
+  category,
 }: {
   count?: number;
-  category?: string; // Add this line to the parameter types
+  category?: string;
 }): Promise<Array<Post>> => {
   const _count = count || 4;
   const posts = await fetchPosts();
- // console.log(posts)
-  console.log(category)
 
-  // Filter posts by category if specified
+  console.log(category);
+
   const filteredPosts = category
-	? posts.filter(
-        post =>
-          post.category?.slug.toLowerCase() === category.slug.toLowerCase()
-     )
-
+    ? posts.filter((post) => post.category?.slug.toLowerCase() === category.toLowerCase())
     : posts;
 
   return filteredPosts.slice(0, _count);
@@ -220,6 +220,7 @@ export const findLatestPosts_old2 = async ({
 /** */
 export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateFunction }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
+
   return paginate(await fetchPosts(), {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
@@ -229,6 +230,7 @@ export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateF
 /** */
 export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
+
   return (await fetchPosts()).flatMap((post) => ({
     params: {
       blog: post.permalink,
@@ -243,6 +245,7 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
 
   const posts = await fetchPosts();
   const categories = {};
+
   posts.map((post) => {
     if (post.category?.slug) {
       categories[post.category?.slug] = post.category;
@@ -253,9 +256,14 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
     paginate(
       posts.filter((post) => post.category?.slug && categorySlug === post.category?.slug),
       {
-        params: { category: categorySlug, blog: CATEGORY_BASE || undefined },
+        params: {
+          category: categorySlug,
+          blog: CATEGORY_BASE || undefined,
+        },
         pageSize: blogPostsPerPage,
-        props: { category: categories[categorySlug] },
+        props: {
+          category: categories[categorySlug],
+        },
       }
     )
   );
@@ -267,6 +275,7 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
 
   const posts = await fetchPosts();
   const tags = {};
+
   posts.map((post) => {
     if (Array.isArray(post.tags)) {
       post.tags.map((tag) => {
@@ -279,9 +288,14 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
     paginate(
       posts.filter((post) => Array.isArray(post.tags) && post.tags.find((elem) => elem.slug === tagSlug)),
       {
-        params: { tag: tagSlug, blog: TAG_BASE || undefined },
+        params: {
+          tag: tagSlug,
+          blog: TAG_BASE || undefined,
+        },
         pageSize: blogPostsPerPage,
-        props: { tag: tags[tagSlug] },
+        props: {
+          tag: tags[tagSlug],
+        },
       }
     )
   );
@@ -296,7 +310,12 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
     if (iteratedPost.slug === originalPost.slug) return acc;
 
     let score = 0;
-    if (iteratedPost.category && originalPost.category && iteratedPost.category.slug === originalPost.category.slug) {
+
+    if (
+      iteratedPost.category &&
+      originalPost.category &&
+      iteratedPost.category.slug === originalPost.category.slug
+    ) {
       score += 5;
     }
 
@@ -316,6 +335,7 @@ export async function getRelatedPosts(originalPost: Post, maxResults: number = 4
 
   const selectedPosts: Post[] = [];
   let i = 0;
+
   while (selectedPosts.length < maxResults && i < postsWithScores.length) {
     selectedPosts.push(postsWithScores[i].post);
     i++;
