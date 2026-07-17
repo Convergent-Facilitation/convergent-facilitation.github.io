@@ -55,6 +55,7 @@ const postCollection = defineCollection({
     excerpt: z.string().optional(),
     image: z.string().optional(),
     imageCaption: z.string().optional(),
+    externalUrl: z.string().url().optional(),
 
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
@@ -64,4 +65,6 @@ const postCollection = defineCollection({
   }),
 });
 
-
+export const collections = {
+  post: postCollection,
+};
