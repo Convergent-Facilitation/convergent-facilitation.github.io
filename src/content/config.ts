@@ -64,7 +64,3 @@ const postCollection = defineCollection({
     metadata: metadataDefinition(),
   }),
 });
-
-export const collections = {
-  post: postCollection,
-};
