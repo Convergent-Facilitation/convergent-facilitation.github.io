@@ -240,3 +240,41 @@ ul {
 .dark .ngl-section-background {
   background-color: transparent;
 }
+/* ========================================
+   NGL HEADER AND FOOTER ICON STYLING
+   ======================================== */
+
+/* Header icons */
+
+:root:not(.dark) #header a[aria-label="RSS Feed"],
+:root:not(.dark) #header button[data-aw-toggle-color-scheme],
+:root:not(.dark) #header [data-aw-toggle-menu],
+:root:not(.dark) #header nav button svg {
+  color: #8A1744;
+}
+
+/* Header icon hover */
+
+:root:not(.dark) #header a[aria-label="RSS Feed"]:hover,
+:root:not(.dark) #header button[data-aw-toggle-color-scheme]:hover,
+:root:not(.dark) #header [data-aw-toggle-menu]:hover {
+  color: #444444;
+  background-color: #8a17442e;
+}
+
+:root:not(.dark) #header nav button:hover svg {
+  color: #444444;
+}
+
+/* Footer social media icons */
+
+:root:not(.dark) .ngl-footer a[aria-label] {
+  color: #8A1744;
+}
+
+/* Footer social media icon hover */
+
+:root:not(.dark) .ngl-footer a[aria-label]:hover {
+  color: #444444;
+  background-color: #8a17442e;
+}
