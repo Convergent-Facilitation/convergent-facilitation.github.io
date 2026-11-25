@@ -213,14 +213,28 @@ ul {
   background-color: #8a17442e;
 }
 
-/* Article hyperlinks */
+/* Article hyperlinks – exclude styled buttons */
 
-:root:not(.dark) .prose a {
+:root:not(.dark) .prose a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-tertiary) {
   color: #8A1744;
 }
 
-:root:not(.dark) .prose a:hover {
+:root:not(.dark) .prose a:not(.btn):not(.btn-primary):not(.btn-secondary):not(.btn-tertiary):hover {
   color: #444444;
+}
+
+/* Preserve primary button text and icon colours */
+
+:root:not(.dark) .prose a.btn-primary,
+:root:not(.dark) .prose a.btn-primary:hover {
+  color: #FFFFFF;
+}
+
+/* Preserve secondary button text and icon colours */
+
+:root:not(.dark) .prose a.btn-secondary,
+:root:not(.dark) .prose a.btn-secondary:hover {
+  color: #8A1744;
 }
 
 /* Keyboard accessibility */
