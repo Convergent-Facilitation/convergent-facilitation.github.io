@@ -192,7 +192,7 @@ ul {
 
 :root:not(.dark) footer.ngl-footer {
   background-color: #FFFFFF;
-  border-color: #C1C1C1;
+  border-top: 2px solid #8A1744;
 }
 
 :root:not(.dark) .ngl-footer a {
