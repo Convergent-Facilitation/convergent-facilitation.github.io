@@ -20,13 +20,34 @@ const image = (await findImage(post.image)) as ImageMetadata | undefined;
 
 const link = post.externalUrl || (APP_BLOG?.post?.isEnabled ? getPermalink(post.permalink, 'post') : '');
 
+const imagePath = typeof post.image === 'string' ? post.image : '';
+
 const uncroppedImages = [
   'hcd-cover-image-square.png',
   'omni-win-paul_1280x720.jpg',
 ];
 
-const preserveImage = typeof post.image === 'string' &&
-  uncroppedImages.some((filename) => post.image.endsWith(filename));
+const preserveImage = uncroppedImages.some((filename) =>
+  imagePath.endsWith(filename)
+);
+
+const topAlignedImages = [
+  'convergent-facilitation-primer.png',
+];
+
+const topAlignImage = topAlignedImages.some((filename) =>
+  imagePath.endsWith(filename)
+);
+
+const imageClass = preserveImage
+  ? 'block w-full h-auto object-contain rounded'
+  : topAlignImage
+    ? 'absolute inset-0 object-cover object-top w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700'
+    : 'absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700';
+
+const imageRatio = preserveImage || topAlignImage
+  ? {}
+  : { aspectRatio: '16:9' };
 ---
 
 <article class={`max-w-md mx-auto md:max-w-none grid gap-6 md:gap-8 ${image ? 'md:grid-cols-2' : ''}`}>
@@ -39,14 +60,12 @@ const preserveImage = typeof post.image === 'string' &&
             : 'relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg'}>
             <Image
               src={image}
-              class={preserveImage
-                ? 'block w-full h-auto object-contain rounded'
-                : 'absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700'}
+              class={imageClass}
               widths={[400, 900]}
               width={900}
               sizes="(max-width: 900px) 400px, 900px"
               alt={post.title}
-              {...(preserveImage ? {} : { aspectRatio: '16:9' })}
+              {...imageRatio}
               loading="lazy"
               decoding="async"
             />
@@ -58,14 +77,12 @@ const preserveImage = typeof post.image === 'string' &&
           : 'relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg'}>
           <Image
             src={image}
-            class={preserveImage
-              ? 'block w-full h-auto object-contain rounded'
-              : 'absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700'}
+            class={imageClass}
             widths={[400, 900]}
             width={900}
             sizes="(max-width: 900px) 400px, 900px"
             alt={post.title}
-            {...(preserveImage ? {} : { aspectRatio: '16:9' })}
+            {...imageRatio}
             loading="lazy"
             decoding="async"
           />
