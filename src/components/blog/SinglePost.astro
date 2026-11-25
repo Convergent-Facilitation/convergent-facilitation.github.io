@@ -72,22 +72,36 @@ const topAlignImage =
       {
         post.image ? (
           <figure class="max-w-full lg:max-w-[900px] mx-auto mb-6">
-           <Image
-  src={post.image}
-  class="w-full sm:rounded-md bg-gray-400 dark:bg-slate-700"
-  widths={[400, 900]}
-  sizes="(max-width: 900px) 400px, 900px"
-  alt={topAlignImage ? 'Convergent Facilitation Primer by Miki Kashtan' : (post?.excerpt || '')}
-  width={900}
-  height={topAlignImage ? 675 : 506}
-  {...(topAlignImage
-    ? {
-        style: 'object-position: center top; object-fit: cover; width: 100%; height: auto; max-height: none; aspect-ratio: 4 / 3;',
-      }
-    : {})}
-  loading="eager"
-  decoding="async"
-/>
+
+            {
+              topAlignImage ? (
+                <div class="relative w-full aspect-[4/3] overflow-hidden rounded-md">
+                  <Image
+                    src={post.image}
+                    class="absolute inset-0 w-full h-full"
+                    widths={[400, 900]}
+                    sizes="(max-width: 900px) 100vw, 900px"
+                    alt="Convergent Facilitation Primer by Miki Kashtan"
+                    width={900}
+                    style="position: absolute; width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: center top; aspect-ratio: auto;"
+                    loading="eager"
+                    decoding="async"
+                  />
+                </div>
+              ) : (
+                <Image
+                  src={post.image}
+                  class="w-full sm:rounded-md bg-gray-400 dark:bg-slate-700"
+                  widths={[400, 900]}
+                  sizes="(max-width: 900px) 400px, 900px"
+                  alt={post?.excerpt || ''}
+                  width={900}
+                  height={506}
+                  loading="eager"
+                  decoding="async"
+                />
+              )
+            }
 
             {
               post.imageCaption && (
