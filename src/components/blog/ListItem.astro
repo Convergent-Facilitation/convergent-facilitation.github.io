@@ -42,8 +42,8 @@ const topAlignImage = topAlignedImages.some((filename) =>
 const imageClass = preserveImage
   ? 'block w-full h-auto object-contain rounded'
   : topAlignImage
-    ? 'absolute inset-0 object-cover object-top w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700'
-    : 'absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-slate-700';
+    ? 'absolute inset-0 object-cover object-top w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-[#302830]'
+    : 'absolute inset-0 object-cover w-full h-full mb-6 rounded shadow-lg bg-gray-400 dark:bg-[#302830]';
 
 const imageRatio = preserveImage || topAlignImage
   ? {}
@@ -63,7 +63,7 @@ const imageStyle = topAlignImage
         <a class="relative block group" href={link ?? 'javascript:void(0)'}>
           <div class={preserveImage
             ? 'relative rounded shadow-lg'
-            : 'relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg'}>
+            : 'relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-[#302830] rounded shadow-lg'}>
             <Image
               src={image}
               class={imageClass}
@@ -81,7 +81,7 @@ const imageStyle = topAlignImage
       ) : (
         <div class={preserveImage
           ? 'relative rounded shadow-lg self-start'
-          : 'relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-slate-700 rounded shadow-lg'}>
+          : 'relative h-0 pb-[56.25%] md:pb-[75%] md:h-72 lg:pb-[56.25%] overflow-hidden bg-gray-400 dark:bg-[#302830] rounded shadow-lg'}>
           <Image
             src={image}
             class={imageClass}
@@ -100,7 +100,7 @@ const imageStyle = topAlignImage
   <div class="mt-2">
     <header>
       <div class="mb-1">
-        <span class="text-sm">
+        <span class="text-sm dark:text-[#C1C1C1]">
           {/* <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" /> */}
           {/* <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time> */}
           {
@@ -108,7 +108,10 @@ const imageStyle = topAlignImage
               <>
                 {' '}
                 {/*·{' '}*/}
-                <a class="hover:underline" href={getPermalink(post.category.slug, 'category')}>
+                <a
+                  class="hover:underline dark:hover:text-[#E58BAB]"
+                  href={getPermalink(post.category.slug, 'category')}
+                >
                   {post.category.title}
                 </a>
               </>
@@ -119,18 +122,18 @@ const imageStyle = topAlignImage
               <>
                 {' '}
                 ·
-                <Icon name="tabler:user" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-gray-400" />
+                <Icon name="tabler:user" class="w-3.5 h-3.5 inline-block -mt-0.5 dark:text-[#C1C1C1]" />
                 <span>{post.author.replaceAll('-', ' ')}</span>
               </>
             )
           }
         </span>
       </div>
-      <h2 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
+      <h2 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-[#E58BAB]">
         {
           link ? (
             <a
-              class="inline-block hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200"
+              class="inline-block hover:text-primary dark:text-[#E58BAB] dark:hover:text-[#F3B5CC] transition ease-in duration-200"
               href={link}
             >
               {post.title}
@@ -142,7 +145,7 @@ const imageStyle = topAlignImage
       </h2>
     </header>
 
-    {post.excerpt && <p class="flex-grow text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>}
+    {post.excerpt && <p class="flex-grow text-muted dark:text-[#C1C1C1] text-lg">{post.excerpt}</p>}
     {
       post.tags && Array.isArray(post.tags) ? (
         <footer class="mt-5">
