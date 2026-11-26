@@ -13,6 +13,7 @@ import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
+import sitemapNoindex from './src/utils/sitemap-noindex';
 
 import {
   readingTimeRemarkPlugin,
@@ -132,6 +133,9 @@ export default defineConfig({
     astrowind({
       config: './src/config.yaml',
     }),
+
+    // Automatically remove non-indexable pages from the generated sitemap.
+    sitemapNoindex(),
   ],
 
   image: {
