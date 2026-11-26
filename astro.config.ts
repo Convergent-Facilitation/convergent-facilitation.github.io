@@ -30,12 +30,13 @@ const whenExternalScripts = (
     ? (Array.isArray(items) ? items.map((item) => item()) : [items()])
     : [];
 
-// Exclude unused, development and redirect-only pages from the sitemap.
+// Exclude unused, draft, development and redirect-only pages from the sitemap.
 const excludedSitemapPaths = [
   '/about',
   '/pricing',
   '/services',
   '/testing_comments',
+  '/drafts',
   '/app',
   '/404',
 ];
@@ -74,7 +75,7 @@ export default defineConfig({
           return false;
         }
 
-        // Exclude other unused and redirect-only pages.
+        // Exclude unused, draft and redirect-only pages.
         return !excludedSitemapPaths.includes(pathname);
       },
     }),
@@ -92,10 +93,11 @@ export default defineConfig({
           'document',
           'advertising',
           'currency-exchange',
+          'wallet',
           'voice-presentation',
           'business-contact',
           'database',
-        ],
+        ].filter((name) => name !== 'wallet'),
       },
     }),
 
