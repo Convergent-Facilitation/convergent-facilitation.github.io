@@ -19,11 +19,15 @@ const { page, category } = Astro.props as Props;
 
 const currentPage = page.currentPage ?? 1;
 
+const isDraftCategory =
+  category.slug?.toLowerCase() === 'drafts' ||
+  category.title?.toLowerCase() === 'drafts';
+
 const metadata = {
-  title: `Category '${category.title}' ${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
+  title: `${category.title}${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   robots: {
-    index: blogCategoryRobots?.index,
-    follow: blogCategoryRobots?.follow,
+    index: isDraftCategory ? false : blogCategoryRobots?.index,
+    follow: blogCategoryRobots?.follow ?? true,
   },
 };
 ---
