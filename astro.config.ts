@@ -70,12 +70,22 @@ export default defineConfig({
           return false;
         }
 
-        // Exclude tag pages because they are currently set to noindex.
+        // Retain Videos as an indexable content landing page.
+        if (pathname === '/t/videos') {
+          return true;
+        }
+
+        // Exclude all other tag archives.
         if (pathname === '/t' || pathname.startsWith('/t/')) {
           return false;
         }
 
-        // Exclude unused, draft and redirect-only pages.
+        // Exclude the drafts archive and any paginated draft archives.
+        if (pathname === '/drafts' || pathname.startsWith('/drafts/')) {
+          return false;
+        }
+
+        // Exclude other unused, draft and redirect-only pages.
         return !excludedSitemapPaths.includes(pathname);
       },
     }),
@@ -93,11 +103,10 @@ export default defineConfig({
           'document',
           'advertising',
           'currency-exchange',
-          'wallet',
           'voice-presentation',
           'business-contact',
           'database',
-        ].filter((name) => name !== 'wallet'),
+        ],
       },
     }),
 
