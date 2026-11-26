@@ -342,3 +342,39 @@ ul {
 :root:not(.dark) #header.scroll > div:first-child {
   box-shadow: 0 3px 12px rgba(138, 23, 68, 0.15);
 }
+/* Responsive Constant Contact newsletter iframe */
+
+iframe.newsletter-signup-iframe {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: 650px;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+/* Tablet */
+
+@media only screen and (max-width: 1024px) {
+  iframe.newsletter-signup-iframe {
+    height: 700px;
+  }
+}
+
+/* Mobile */
+
+@media only screen and (max-width: 600px) {
+  iframe.newsletter-signup-iframe {
+    height: 800px;
+  }
+}
+
+/* Smaller mobile screens */
+
+@media only screen and (max-width: 375px) {
+  iframe.newsletter-signup-iframe {
+    height: 850px;
+  }
+}
