@@ -26,6 +26,10 @@ const { post } = Astro.props as Props;
 const url = getCanonical(getPermalink(post.permalink, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 
+const isDraftPost =
+  post.category?.slug?.toLowerCase() === 'drafts' ||
+  post.category?.title?.toLowerCase() === 'drafts';
+
 const metadata = merge(
   {
     title: post.title,
@@ -41,7 +45,15 @@ const metadata = merge(
         : {}),
     },
   },
-  { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
+  { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) },
+  isDraftPost
+    ? {
+        robots: {
+          index: false,
+          follow: true,
+        },
+      }
+    : {}
 ) as MetaData;
 ---
 
