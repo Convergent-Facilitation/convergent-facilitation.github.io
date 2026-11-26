@@ -12,7 +12,9 @@ export const GET = async () => {
     });
   }
 
-  const posts = await fetchPosts();
+  const posts = (await fetchPosts()).filter(
+    (post) => post.category?.slug?.toLowerCase() !== 'drafts'
+  );
 
   const rss = await getRssString({
     title: `${SITE.name}’s Blog`,
