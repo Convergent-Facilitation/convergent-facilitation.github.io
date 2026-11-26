@@ -462,3 +462,26 @@ iframe.newsletter-signup-iframe {
 .dark #header.expanded nav .dropdown-menu a:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }
+/* Reduce vertical spacing in expanded mobile and tablet menus */
+
+#header.expanded nav > ul {
+  padding: 4px 16px 10px;
+}
+
+#header.expanded nav > ul > li > a,
+#header.expanded nav > ul > li > button {
+  padding: 8px 8px;
+  line-height: 1.3;
+}
+
+#header.expanded nav .dropdown-menu {
+  margin: 0 0 6px 18px !important;
+}
+
+#header.expanded nav .dropdown-menu a {
+  padding: 6px 12px;
+  line-height: 1.4;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
