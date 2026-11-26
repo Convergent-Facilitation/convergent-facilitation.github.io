@@ -137,13 +137,22 @@ export const blogTagRobots = APP_BLOG.tag.robots;
 
 export const blogPostsPerPage = APP_BLOG?.postsPerPage;
 
-/** */
+/** Return all generated articles, including shareable drafts. */
 export const fetchPosts = async (): Promise<Array<Post>> => {
   if (!_posts) {
     _posts = await load();
   }
 
   return _posts;
+};
+
+/** Return published articles for public content listings. */
+export const fetchPublishedPosts = async (): Promise<Array<Post>> => {
+  const posts = await fetchPosts();
+
+  return posts.filter(
+    (post) => post.category?.slug?.toLowerCase() !== 'drafts'
+  );
 };
 
 /** */
@@ -177,7 +186,7 @@ export const findPostsByIds = async (ids: Array<string>): Promise<Array<Post>> =
 /** */
 export const findLatestPosts_old = async ({ count }: { count?: number }): Promise<Array<Post>> => {
   const _count = count || 4;
-  const posts = await fetchPosts();
+  const posts = await fetchPublishedPosts();
   console.log(posts);
 
   return posts ? posts.slice(0, _count) : [];
@@ -191,7 +200,7 @@ export const findLatestPosts = async ({
   category?: string;
 }): Promise<Array<Post>> => {
   const _count = count || 4;
-  const posts = await fetchPosts();
+  const posts = await fetchPublishedPosts();
 
   const filteredPosts = category
     ? posts.filter((post) => post.category?.slug.toLowerCase() === category.toLowerCase())
@@ -208,7 +217,7 @@ export const findLatestPosts_old2 = async ({
   category?: string;
 }): Promise<Array<Post>> => {
   const _count = count || 4;
-  const posts = await fetchPosts();
+  const posts = await fetchPublishedPosts();
 
   console.log(category);
 
@@ -219,17 +228,17 @@ export const findLatestPosts_old2 = async ({
   return filteredPosts.slice(0, _count);
 };
 
-/** */
+/** Generate the public All our content archive without drafts. */
 export const getStaticPathsBlogList = async ({ paginate }: { paginate: PaginateFunction }) => {
   if (!isBlogEnabled || !isBlogListRouteEnabled) return [];
 
-  return paginate(await fetchPosts(), {
+  return paginate(await fetchPublishedPosts(), {
     params: { blog: BLOG_BASE || undefined },
     pageSize: blogPostsPerPage,
   });
 };
 
-/** */
+/** Generate individual article pages, including shareable drafts. */
 export const getStaticPathsBlogPost = async () => {
   if (!isBlogEnabled || !isBlogPostRouteEnabled) return [];
 
@@ -241,7 +250,7 @@ export const getStaticPathsBlogPost = async () => {
   }));
 };
 
-/** */
+/** Generate category archives, including the dedicated Drafts archive. */
 export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: PaginateFunction }) => {
   if (!isBlogEnabled || !isBlogCategoryRouteEnabled) return [];
 
@@ -271,11 +280,11 @@ export const getStaticPathsBlogCategory = async ({ paginate }: { paginate: Pagin
   );
 };
 
-/** */
+/** Generate public tag archives without draft articles. */
 export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFunction }) => {
   if (!isBlogEnabled || !isBlogTagRouteEnabled) return [];
 
-  const posts = await fetchPosts();
+  const posts = await fetchPublishedPosts();
   const tags = {};
 
   posts.map((post) => {
@@ -303,9 +312,9 @@ export const getStaticPathsBlogTag = async ({ paginate }: { paginate: PaginateFu
   );
 };
 
-/** */
+/** Generate related article suggestions without drafts. */
 export async function getRelatedPosts(originalPost: Post, maxResults: number = 4): Promise<Post[]> {
-  const allPosts = await fetchPosts();
+  const allPosts = await fetchPublishedPosts();
   const originalTagsSet = new Set(originalPost.tags ? originalPost.tags.map((tag) => tag.slug) : []);
 
   const postsWithScores = allPosts.reduce((acc: { post: Post; score: number }[], iteratedPost: Post) => {
