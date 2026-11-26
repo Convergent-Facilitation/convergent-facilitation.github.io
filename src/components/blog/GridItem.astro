@@ -23,7 +23,7 @@ const preserveImage = typeof post.image === 'string' &&
 <article class="mb-6 transition">
   <div class={preserveImage
     ? 'relative rounded shadow-lg mb-6'
-    : 'relative md:h-64 bg-gray-400 dark:bg-slate-700 rounded shadow-lg mb-6'}>
+    : 'relative md:h-64 bg-gray-400 dark:bg-[#302830] rounded shadow-lg mb-6'}>
     {
       image &&
         (link ? (
@@ -32,7 +32,7 @@ const preserveImage = typeof post.image === 'string' &&
               src={image}
               class={preserveImage
                 ? 'block w-full h-auto object-contain rounded'
-                : 'w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700'}
+                : 'w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-[#302830]'}
               widths={[400, 900]}
               width={400}
               sizes="(max-width: 900px) 400px, 900px"
@@ -47,7 +47,7 @@ const preserveImage = typeof post.image === 'string' &&
             src={image}
             class={preserveImage
               ? 'block w-full h-auto object-contain rounded'
-              : 'w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-slate-700'}
+              : 'w-full md:h-full rounded shadow-lg bg-gray-400 dark:bg-[#302830]'}
             widths={[400, 900]}
             width={400}
             sizes="(max-width: 900px) 400px, 900px"
@@ -60,10 +60,13 @@ const preserveImage = typeof post.image === 'string' &&
     }
   </div>
 
-  <h3 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300">
+  <h3 class="text-xl sm:text-2xl font-bold leading-tight mb-2 font-heading dark:text-[#E58BAB]">
     {
       link ? (
-        <a class="inline-block hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200" href={link}>
+        <a
+          class="inline-block hover:text-primary dark:text-[#E58BAB] dark:hover:text-[#F3B5CC] transition ease-in duration-200"
+          href={link}
+        >
           {post.title}
         </a>
       ) : (
@@ -72,5 +75,5 @@ const preserveImage = typeof post.image === 'string' &&
     }
   </h3>
 
-  <p class="text-muted dark:text-slate-400 text-lg">{post.excerpt}</p>
+  <p class="text-muted dark:text-[#C1C1C1] text-lg">{post.excerpt}</p>
 </article>
