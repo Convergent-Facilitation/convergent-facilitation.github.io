@@ -27,7 +27,7 @@ const topAlignImage =
   <article>
     <header class={post.image ? '' : ''}>
       <div class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 px-4 sm:px-6 sm:items-center">
-        <p>
+        <p class="dark:text-[#C1C1C1]">
           {/* <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" /> */}
           {/* <time datetime={String(post.publishDate)} class="inline-block">{getFormattedDate(post.publishDate)}</time> */}
 
@@ -37,7 +37,7 @@ const topAlignImage =
                 {' '}
                 {/* ·{' '} */}
                 <a
-                  class="hover:underline inline-block"
+                  class="hover:underline inline-block dark:hover:text-[#E58BAB]"
                   href={getPermalink(post.category.slug, 'category')}
                 >
                   {post.category.title}
@@ -50,7 +50,7 @@ const topAlignImage =
             post.author && (
               <>
                 {' '}
-                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
+                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-[#C1C1C1]" />
                 <span class="inline-block">{post.author}</span>
               </>
             )
@@ -59,13 +59,13 @@ const topAlignImage =
       </div>
 
       <h1
-        class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading"
+        class="px-4 sm:px-6 max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading dark:text-[#E58BAB]"
       >
         {post.title}
       </h1>
 
       <p
-        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
+        class="max-w-3xl mx-auto mt-4 mb-8 px-4 sm:px-6 text-xl md:text-2xl text-muted dark:text-[#C1C1C1] text-justify"
       >
         {post.excerpt}
       </p>
@@ -92,7 +92,7 @@ const topAlignImage =
               ) : (
                 <Image
                   src={post.image}
-                  class="w-full sm:rounded-md bg-gray-400 dark:bg-slate-700"
+                  class="w-full sm:rounded-md bg-gray-400 dark:bg-[#302830]"
                   widths={[400, 900]}
                   sizes="(max-width: 900px) 400px, 900px"
                   alt={post?.excerpt || ''}
@@ -106,7 +106,7 @@ const topAlignImage =
 
             {
               post.imageCaption && (
-                <figcaption class="mt-3 px-4 sm:px-0 text-sm italic text-center text-muted dark:text-slate-400">
+                <figcaption class="mt-3 px-4 sm:px-0 text-sm italic text-center text-muted dark:text-[#C1C1C1]">
                   {post.imageCaption}
                 </figcaption>
               )
@@ -114,14 +114,14 @@ const topAlignImage =
           </figure>
         ) : (
           <div class="max-w-3xl mx-auto px-4 sm:px-6">
-            <div class="border-t dark:border-slate-700" />
+            <div class="border-t dark:border-[#503342]" />
           </div>
         )
       }
     </header>
 
     <div
-      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-slate-300 prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-blue-400 prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
+      class="mx-auto px-6 sm:px-6 max-w-3xl prose prose-md lg:prose-xl dark:prose-invert dark:prose-headings:text-[#E58BAB] prose-headings:font-heading prose-headings:leading-tighter prose-headings:tracking-tighter prose-headings:font-bold prose-a:text-primary dark:prose-a:text-[#E58BAB] prose-img:rounded-md prose-img:shadow-lg mt-8 prose-headings:scroll-mt-[80px] prose-li:my-0"
     >
       <slot />
     </div>
@@ -132,7 +132,7 @@ const topAlignImage =
       <SocialShare
         url={url}
         text={post.title}
-        class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600"
+        class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-[#C1C1C1]"
       />
     </div>
   </article>
