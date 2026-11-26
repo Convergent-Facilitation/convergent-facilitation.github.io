@@ -5,6 +5,7 @@ import { SITE, APP_BLOG } from 'astrowind:config';
 import { trim } from '~/utils/utils';
 
 export const trimSlash = (s: string) => trim(trim(s, '/'));
+
 const createPath = (...params: string[]) => {
   const paths = params
     .map((el) => trimSlash(el))
@@ -29,13 +30,19 @@ export const POST_PERMALINK_PATTERN = trimSlash(APP_BLOG?.post?.permalink || `${
 
 /** */
 export const getCanonical = (path = ''): string | URL => {
-  const url = String(new URL(path, SITE.site));
-  if (SITE.trailingSlash == false && path && url.endsWith('/')) {
-    return url.slice(0, -1);
-  } else if (SITE.trailingSlash == true && path && !url.endsWith('/')) {
-    return url + '/';
+  const url = new URL(path, SITE.site);
+
+  // Normalise duplicate slashes within the URL pathname.
+  url.pathname = url.pathname.replace(/\/{2,}/g, '/');
+
+  // Apply the configured trailing slash preference.
+  if (SITE.trailingSlash) {
+    url.pathname = url.pathname.replace(/\/+$/, '') + '/';
+  } else {
+    url.pathname = url.pathname.replace(/\/+$/, '') || '/';
   }
-  return url;
+
+  return url.toString();
 };
 
 /** */
