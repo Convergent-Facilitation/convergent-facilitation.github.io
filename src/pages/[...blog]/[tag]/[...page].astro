@@ -19,11 +19,15 @@ const { page, tag } = Astro.props as Props;
 
 const currentPage = page.currentPage ?? 1;
 
+const isIndexableTag =
+  tag.slug?.toLowerCase() === 'videos' ||
+  tag.title?.toLowerCase() === 'videos';
+
 const metadata = {
-  title: `Posts by tag '${tag.title}'${currentPage > 1 ? ` — Page ${currentPage} ` : ''}`,
+  title: `${tag.title}${currentPage > 1 ? ` — Page ${currentPage}` : ''}`,
   robots: {
-    index: blogTagRobots?.index,
-    follow: blogTagRobots?.follow,
+    index: isIndexableTag ? true : false,
+    follow: blogTagRobots?.follow ?? true,
   },
 };
 ---
