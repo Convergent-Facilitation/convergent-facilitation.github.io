@@ -2,11 +2,238 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Constant Contact Form</title>
-  <script>var _ctct_m = "97c3f771c05a36ef66eaa38762ffda33";</script>
-  <script src="//static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js" async defer></script>
+
+  <style>
+    @font-face {
+      font-family: 'Asul';
+      src: url('/fonts/asul/asul-latin-400-normal.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Asul';
+      src: url('/fonts/asul/asul-latin-700-normal.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Quattrocento Sans';
+      src: url('/fonts/quattrocento-sans/quattrocento-sans-latin-700-normal.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: light;
+      --ngl-magenta: #8A1744;
+      --ngl-text: #050404;
+      --ngl-grey: #444444;
+      --ngl-border: #C1C1C1;
+      --ngl-light-grey: #F1EFF0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      color: var(--ngl-text);
+      font-family: 'Asul', sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    /* Centred, responsive form container */
+
+    .newsletter-form-wrapper {
+      width: 100%;
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 25px 20px 35px;
+    }
+
+    .ctct-inline-form {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 auto !important;
+    }
+
+    /* Form card */
+
+    .ctct-inline-form .ctct-form-default {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 auto !important;
+      padding: 35px !important;
+      background: #FFFFFF !important;
+      border: 1px solid #F1EFF0 !important;
+      border-radius: 8px !important;
+      box-shadow: 0 8px 25px rgba(138, 23, 68, 0.20) !important;
+      font-family: 'Asul', sans-serif !important;
+      color: var(--ngl-text) !important;
+    }
+
+    /* Typography */
+
+    .ctct-inline-form h1,
+    .ctct-inline-form h2,
+    .ctct-inline-form h3 {
+      font-family: 'Quattrocento Sans', sans-serif !important;
+      font-weight: 700 !important;
+      color: var(--ngl-magenta) !important;
+    }
+
+    .ctct-inline-form label,
+    .ctct-inline-form .ctct-form-label {
+      font-family: 'Asul', sans-serif !important;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      color: var(--ngl-text) !important;
+      margin-bottom: 8px !important;
+    }
+
+    .ctct-inline-form .ctct-form-required {
+      color: var(--ngl-magenta) !important;
+    }
+
+    /* Input fields */
+
+    .ctct-inline-form input[type="text"],
+    .ctct-inline-form input[type="email"],
+    .ctct-inline-form input[type="tel"],
+    .ctct-inline-form select,
+    .ctct-inline-form textarea {
+      width: 100% !important;
+      min-height: 50px !important;
+      padding: 12px 15px !important;
+      background: #FFFFFF !important;
+      border: 1px solid var(--ngl-border) !important;
+      border-radius: 5px !important;
+      color: var(--ngl-text) !important;
+      font-family: 'Asul', sans-serif !important;
+      font-size: 17px !important;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .ctct-inline-form input:focus,
+    .ctct-inline-form select:focus,
+    .ctct-inline-form textarea:focus {
+      border-color: var(--ngl-magenta) !important;
+      outline: none !important;
+      box-shadow: 0 0 0 3px rgba(138, 23, 68, 0.12) !important;
+    }
+
+    .ctct-inline-form .ctct-form-field {
+      margin-bottom: 22px !important;
+    }
+
+    /* Consent and privacy text */
+
+    .ctct-inline-form .ctct-form-footer,
+    .ctct-inline-form .ctct-form-footer p,
+    .ctct-inline-form .ctct-form-footer span,
+    .ctct-inline-form .ctct-form-footer a,
+    .ctct-inline-form .ctct-form-legal,
+    .ctct-inline-form .ctct-form-legal p,
+    .ctct-inline-form .ctct-disclosure,
+    .ctct-inline-form .ctct-disclosure p {
+      font-family: 'Asul', sans-serif !important;
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+      color: var(--ngl-grey) !important;
+    }
+
+    .ctct-inline-form a {
+      color: var(--ngl-magenta) !important;
+      text-decoration: underline !important;
+    }
+
+    /* Signup button */
+
+    .ctct-inline-form button[type="submit"],
+    .ctct-inline-form input[type="submit"],
+    .ctct-inline-form .ctct-form-button {
+      display: block !important;
+      width: auto !important;
+      min-width: 200px !important;
+      max-width: 100% !important;
+      min-height: 50px !important;
+      margin: 25px auto 5px !important;
+      padding: 14px 35px !important;
+      background: var(--ngl-magenta) !important;
+      border: 1px solid var(--ngl-magenta) !important;
+      border-radius: 50px !important;
+      color: #FFFFFF !important;
+      font-family: 'Asul', sans-serif !important;
+      font-size: 17px !important;
+      font-weight: 700 !important;
+      text-align: center !important;
+      cursor: pointer !important;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .ctct-inline-form button[type="submit"]:hover,
+    .ctct-inline-form input[type="submit"]:hover,
+    .ctct-inline-form .ctct-form-button:hover {
+      background: var(--ngl-grey) !important;
+      border-color: var(--ngl-grey) !important;
+      color: #FFFFFF !important;
+    }
+
+    .ctct-inline-form button:focus-visible,
+    .ctct-inline-form input[type="submit"]:focus-visible {
+      outline: 2px solid var(--ngl-magenta) !important;
+      outline-offset: 4px !important;
+    }
+
+    /* Mobile styling */
+
+    @media (max-width: 600px) {
+      .newsletter-form-wrapper {
+        padding: 15px 10px 25px;
+      }
+
+      .ctct-inline-form .ctct-form-default {
+        padding: 20px !important;
+      }
+
+      .ctct-inline-form button[type="submit"],
+      .ctct-inline-form input[type="submit"],
+      .ctct-inline-form .ctct-form-button {
+        width: 100% !important;
+        min-width: 0 !important;
+      }
+    }
+  </style>
+
+  <script>
+    var _ctct_m = "97c3f771c05a36ef66eaa38762ffda33";
+  </script>
+
+  <script
+    src="https://static.ctctcdn.com/js/signup-form-widget/current/signup-form-widget.min.js"
+    async
+    defer>
+  </script>
 </head>
+
 <body>
-<div class="ctct-inline-form" data-form-id="d4cca651-ab32-4efc-9f69-888291033273"></div>
+  <div class="newsletter-form-wrapper">
+    <div
+      class="ctct-inline-form"
+      data-form-id="d4cca651-ab32-4efc-9f69-888291033273">
+    </div>
+  </div>
 </body>
 </html>
