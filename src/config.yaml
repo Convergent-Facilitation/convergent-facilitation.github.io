@@ -1,6 +1,6 @@
 site:
   name: Convergent Facilitation
-  site: 'https://convergentfacilitaton.org'
+  site: 'https://convergentfacilitation.org'
   base: '/'
   trailingSlash: false
 
