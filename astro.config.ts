@@ -59,7 +59,8 @@ export default defineConfig({
 
     sitemap({
       filter: (page) => {
-        const pathname = new URL(page).pathname.replace(/\/+$/, '') || '/';
+        const pathname =
+          new URL(page).pathname.replace(/\/{2,}/g, '/').replace(/\/+$/, '') || '/';
 
         // Exclude unused AstroWind demonstration pages.
         if (
@@ -88,6 +89,19 @@ export default defineConfig({
 
         // Exclude other unused, draft and redirect-only pages.
         return !excludedSitemapPaths.includes(pathname);
+      },
+
+      // Normalise sitemap URLs to use exactly one trailing slash.
+      serialize: (item) => {
+        const url = new URL(item.url);
+
+        url.pathname =
+          url.pathname.replace(/\/{2,}/g, '/').replace(/\/+$/, '') + '/';
+
+        return {
+          ...item,
+          url: url.toString(),
+        };
       },
     }),
 
