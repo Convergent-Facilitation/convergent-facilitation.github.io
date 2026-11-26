@@ -254,6 +254,7 @@ ul {
 .dark .ngl-section-background {
   background-color: transparent;
 }
+
 /* ========================================
    NGL HEADER AND FOOTER ICON STYLING
    ======================================== */
@@ -292,6 +293,7 @@ ul {
   color: #444444;
   background-color: #8a17442e;
 }
+
 /* ========================================
    NGL PHASE 2 SHADOW STYLING
    ======================================== */
@@ -342,13 +344,18 @@ ul {
 :root:not(.dark) #header.scroll > div:first-child {
   box-shadow: 0 3px 12px rgba(138, 23, 68, 0.15);
 }
-/* Responsive Constant Contact newsletter iframe */
+
+/* ========================================
+   RESPONSIVE CONSTANT CONTACT NEWSLETTER
+   ======================================== */
+
+/* Desktop */
 
 iframe.newsletter-signup-iframe {
   display: block;
   width: 100%;
   max-width: 800px;
-  height: 650px;
+  height: 670px;
   margin: 0 auto;
   padding: 0;
   border: none;
@@ -359,7 +366,7 @@ iframe.newsletter-signup-iframe {
 
 @media only screen and (max-width: 1024px) {
   iframe.newsletter-signup-iframe {
-    height: 700px;
+    height: 650px;
   }
 }
 
@@ -367,7 +374,7 @@ iframe.newsletter-signup-iframe {
 
 @media only screen and (max-width: 600px) {
   iframe.newsletter-signup-iframe {
-    height: 800px;
+    height: 700px;
   }
 }
 
@@ -375,6 +382,6 @@ iframe.newsletter-signup-iframe {
 
 @media only screen and (max-width: 375px) {
   iframe.newsletter-signup-iframe {
-    height: 850px;
+    height: 750px;
   }
 }
