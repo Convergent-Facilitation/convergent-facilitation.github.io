@@ -67,17 +67,27 @@
       width: 100% !important;
       max-width: none !important;
       margin: 0 auto !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .ctct-inline-form .ctct-form-container {
+      width: 100% !important;
+      max-width: none !important;
+      margin: 0 auto !important;
+      background: transparent !important;
     }
 
     /* Form card */
 
-    .ctct-inline-form .ctct-form-default {
+    .ctct-inline-form .ctct-form-defaults,
+    .ctct-inline-form [data-qe-id="form-background"] {
       width: 100% !important;
       max-width: none !important;
       margin: 0 auto !important;
       padding: 35px !important;
-      background: #FFFFFF !important;
-      border: 1px solid #F1EFF0 !important;
+      background: var(--ngl-light-grey) !important;
+      border: 1px solid #E5E0E3 !important;
       border-radius: 8px !important;
       box-shadow: 0 8px 25px rgba(138, 23, 68, 0.20) !important;
       font-family: 'Asul', sans-serif !important;
@@ -113,7 +123,7 @@
     .ctct-inline-form input[type="email"],
     .ctct-inline-form input[type="tel"],
     .ctct-inline-form select,
-    .ctct-inline-form textarea {
+    .ctct-inline-form textarea:not(.g-recaptcha-response) {
       width: 100% !important;
       min-height: 50px !important;
       padding: 12px 15px !important;
@@ -128,7 +138,7 @@
 
     .ctct-inline-form input:focus,
     .ctct-inline-form select:focus,
-    .ctct-inline-form textarea:focus {
+    .ctct-inline-form textarea:not(.g-recaptcha-response):focus {
       border-color: var(--ngl-magenta) !important;
       outline: none !important;
       box-shadow: 0 0 0 3px rgba(138, 23, 68, 0.12) !important;
@@ -147,14 +157,18 @@
     .ctct-inline-form .ctct-form-legal,
     .ctct-inline-form .ctct-form-legal p,
     .ctct-inline-form .ctct-disclosure,
-    .ctct-inline-form .ctct-disclosure p {
+    .ctct-inline-form .ctct-disclosure p,
+    .ctct-inline-form .ctct-gdpr-text,
+    .ctct-inline-form .ctct-gdpr-text a {
       font-family: 'Asul', sans-serif !important;
       font-size: 14px !important;
       line-height: 1.6 !important;
       color: var(--ngl-grey) !important;
     }
 
-    .ctct-inline-form a {
+    .ctct-inline-form a,
+    .ctct-inline-form .ctct-gdpr-text a,
+    .ctct-inline-form .ctct-form-footer-link {
       color: var(--ngl-magenta) !important;
       text-decoration: underline !important;
     }
@@ -204,7 +218,8 @@
         padding: 15px 10px 25px;
       }
 
-      .ctct-inline-form .ctct-form-default {
+      .ctct-inline-form .ctct-form-defaults,
+      .ctct-inline-form [data-qe-id="form-background"] {
         padding: 20px !important;
       }
 
@@ -215,24 +230,6 @@
         min-width: 0 !important;
       }
     }
-
-    /* Override Constant Contact's default background */
-
-.ctct-inline-form,
-.ctct-inline-form .ctct-form,
-.ctct-inline-form .ctct-form-default,
-.ctct-inline-form div.ctct-form-default {
-  background: #F1EFF0 !important;
-  border-radius: 8px !important;
-}
-
-.ctct-inline-form {
-  box-shadow: 0 8px 25px rgba(138, 23, 68, 0.20) !important;
-}
-
-.ctct-inline-form .ctct-form-default {
-  box-shadow: none !important;
-}
   </style>
 
   <script>
