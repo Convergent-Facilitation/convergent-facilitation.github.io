@@ -388,3 +388,77 @@ iframe.newsletter-signup-iframe {
     height: 750px;
   }
 }
+/* ========================================
+   NGL MOBILE AND TABLET NAVIGATION
+   ======================================== */
+
+/* Main menu layout */
+
+#header.expanded nav > ul {
+  padding: 8px 16px 20px;
+}
+
+/* Main menu headings */
+
+#header.expanded nav > ul > li > a,
+#header.expanded nav > ul > li > button {
+  font-family: var(--aw-font-heading);
+  font-size: 21px;
+  font-weight: 700;
+  padding: 12px 8px;
+  line-height: 1.4;
+}
+
+:root:not(.dark) #header.expanded nav > ul > li > a,
+:root:not(.dark) #header.expanded nav > ul > li > button {
+  color: #8A1744;
+}
+
+/* Remove submenu card styling */
+
+#header.expanded nav .dropdown-menu {
+  position: static;
+  display: block;
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  border-radius: 0;
+  border-left: 2px solid #8a17442e;
+  margin: 0 0 12px 18px !important;
+  padding: 0 0 0 12px;
+}
+
+/* Submenu links */
+
+#header.expanded nav .dropdown-menu a {
+  font-family: var(--aw-font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+:root:not(.dark) #header.expanded nav .dropdown-menu a {
+  color: #444444;
+}
+
+/* Submenu hover and active states */
+
+:root:not(.dark) #header.expanded nav .dropdown-menu a:hover,
+:root:not(.dark) #header.expanded nav .dropdown-menu a:focus-visible,
+:root:not(.dark) #header.expanded nav .dropdown-menu a.aw-link-active {
+  color: #8A1744;
+  background-color: #8a17442e;
+}
+
+/* Dark mode compatibility */
+
+.dark #header.expanded nav .dropdown-menu {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.dark #header.expanded nav .dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
